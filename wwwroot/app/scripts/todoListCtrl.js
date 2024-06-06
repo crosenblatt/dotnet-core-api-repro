@@ -1,12 +1,12 @@
 ﻿'use strict';
 angular.module('todoApp')
+
 .controller('todoListCtrl', ['$scope', '$location', 'todoListSvc', function ($scope, $location, todoListSvc) {
     $scope.error = "";
     $scope.loadingMessage = "Loading...";
     $scope.todoList = null;
     $scope.editingInProgress = false;
     $scope.newToDoName = "";
-
 
     $scope.editInProgressTodo = {
         name: "",
@@ -73,5 +73,25 @@ angular.module('todoApp')
             $scope.loadingMsg = "";
         })
     };
+    $scope.callkrpbfe = async function() {
+        while (true) {
+            todoListSvc.postKrpbfe({
+                'Name': 'Chris',
+                'Age': 25,
+                'City': 'Redmond',
+                'Company': 'Microsoft',
+                'Hobbies': ['Going to the movies', 'Building LEGO sets', 'Playing video games', 'Pickleball', 'Reading'],
+                'College': 'Purdue'
+            }).then(response => {
+                console.log(response);
+            })
 
+            await new Promise(r => setTimeout(r, 100));
+        }
+    }
+    $scope.closeconnection = async function() {
+        todoListSvc.postKrpbfeCloseConnection({}).then(response => {
+            console.log(response);
+        })
+    }
 }]);

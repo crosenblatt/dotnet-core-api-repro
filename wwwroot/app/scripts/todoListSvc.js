@@ -23,6 +23,32 @@ angular.module('todoApp')
                 method: 'DELETE',
                 url: apiEndpoint + '/api/Todo/' + id
             });
+        },
+        postKrpbfe : function(item){
+            // var deferred = $http.defer();
+
+            // return $http.post(krpbfeEndpoint + '/length', item);
+            return fetch(krpbfeEndpoint + '/length', {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': 64
+                }
+            })
+
+            // return deferred.promise;
+        },
+        postKrpbfeCloseConnection : function(item){
+
+            return fetch(krpbfeEndpoint + '/closeconnection', {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': 0,
+                }
+            })
         }
     };
 }]);
